@@ -1,0 +1,18 @@
+---
+# tasks file for podman
+- name: Create kubic sources list
+  lineinfile:
+    path: "{{ podman_sources_list }}"
+    line: "{{ podman_repo_url }}"
+    create: yes
+
+- name: Add kubic apt signing key
+  apt_key:
+    url: "{{ podman_key_url }}"
+    state: present
+
+- name: Install podman
+  apt:
+    name: podman
+    state: present
+    update_cache: yes

@@ -1,0 +1,5 @@
+---
+# defaults file for podman
+podman_repo_url: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/ /"
+podman_sources_list: "/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
+podman_key_url: "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_{{ ansible_distribution_version }}/Release.key"

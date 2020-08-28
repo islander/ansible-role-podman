@@ -1,0 +1,24 @@
+---
+# This is an example playbook to execute Ansible tests.
+- name: Verify
+  hosts: all
+  tasks:
+  - name: Gather package facts
+    package_facts:
+      manager: auto
+
+  - name: Verify package
+    assert:
+      that: "'{{ item }}' in ansible_facts.packages"
+    with_items:
+      - podman
+
+  - name: Run podman
+    shell: /usr/bin/podman --version
+    register: cmd_result
+
+  - name: Verify binary
+    assert:
+      that:
+        - "'command not found' not in cmd_result.stderr"
+        - "'podman version' in cmd_result.stdout"
